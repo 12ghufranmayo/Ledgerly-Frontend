@@ -9,7 +9,7 @@ const NavigationLayout = () => {
       <SideBar />
       <div className="flex-1 flex flex-col">
         < TopBar />
-        <main className="bg-gray-100 min-h-screen p-6">
+        <main className="p-6">
           < Outlet />
         </main>
       </div>
