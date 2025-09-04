@@ -3,14 +3,15 @@ import SideBar from '../UI/SideBar.jsx'
 import TopBar from '../UI/TopBar.jsx'
 import { Outlet } from 'react-router'
 
-const NavigationLayout = () => {
+const NavigationLayout = (props) => {
+
   return (
     <div className="flex">
       <SideBar />
       <div className="flex-1 flex flex-col">
         < TopBar />
         <main className="p-6">
-          < Outlet />
+         { props.children }
         </main>
       </div>
     </div>

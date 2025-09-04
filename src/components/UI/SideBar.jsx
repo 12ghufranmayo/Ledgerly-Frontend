@@ -16,7 +16,7 @@ const SideBar = () => {
   ];
 
   return (
-    <div className="flex h-screen">
+    <div className="flex">
       {/* Sidebar */}
       <div
         className={`${

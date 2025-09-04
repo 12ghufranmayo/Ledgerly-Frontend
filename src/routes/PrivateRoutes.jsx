@@ -1,10 +1,11 @@
 import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
+import NavigationLayout from '../components/Layouts/NavigationLayout';
 
 const PrivateRoutes = () => {
   const isAuthenticated = true; // Replace with actual authentication logic
 
-  return isAuthenticated ? <Outlet /> : <Navigate  to="/login" replace />;
+  return isAuthenticated ? <NavigationLayout> <Outlet />  </NavigationLayout>: <Navigate  to="/login" replace />;
 }
 
 export default PrivateRoutes

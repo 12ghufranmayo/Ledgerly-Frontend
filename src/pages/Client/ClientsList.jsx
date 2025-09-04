@@ -3,6 +3,7 @@ import { Outlet } from 'react-router'
 import  DataTable  from '../../components/Common/DataTable.jsx'
 import { Box } from '@mui/material';
 import { PiUsersFourDuotone } from "react-icons/pi";
+import NavigationLayout from '../../components/Layouts/NavigationLayout.jsx';
 
 const ClientsList = () => {
   const columns = [
@@ -54,17 +55,17 @@ const ClientsList = () => {
       { id: 11, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
   ];
 
-  const handleView = (row) => {
-    alert("View action clicked for row:" + row.name);
+  const handleView = (row) => {    
+    alert("View action clicked for row:" + row.id);
   } 
 
   const handleEdit = (row) => {
-    alert("Editing client: " + row.name);
+    alert("Editing client: " + row.id);
   };
 
   const handleDelete = (row) => {
-    if (window.confirm(`Delete ${row.name}?`)) {
-      alert("Deleted client: " + row.name);
+    if (window.confirm(`Delete ${row.id}?`)) {
+      alert("Deleted client: " + row.id);
     }
   }
 
@@ -74,21 +75,22 @@ const ClientsList = () => {
           <h1 className='text-2xl font-medium flex ml leading-normal text-slate-700 gap-3'>
             <PiUsersFourDuotone className='h-8 w-8'/> Clients
           </h1>
+          
         </div>
-        <Box sx={{ mt: 2, height: 200, width: '100%' }}>
             <DataTable 
               rows={rows} 
-              columns={columns} 
-              pageSize={[5, 25, 50, 100]}
+              columns={columns}
               loading={false} // Set to true when fetching data
               checkboxSelection={false}
               onView={handleView}
               onEdit={handleEdit}
-              onDelete={handleDelete} 
+              onDelete={handleDelete}
+              create={true}
+              height={560} 
           />
-        </Box>
-        <Outlet />
+  
     </div>
+
   )
 }
 
