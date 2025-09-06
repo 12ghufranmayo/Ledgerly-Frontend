@@ -1,11 +1,12 @@
-import React from 'react'
+import { React } from 'react'
 import { Outlet } from 'react-router'
 import  DataTable  from '../../components/Common/DataTable.jsx'
 import { Box } from '@mui/material';
 import { PiUsersFourDuotone } from "react-icons/pi";
-import NavigationLayout from '../../components/Layouts/NavigationLayout.jsx';
+import { useNavigate } from 'react-router-dom';
 
 const ClientsList = () => {
+  const navigate = useNavigate();
   const columns = [
     { 
       field: 'id', 
@@ -55,8 +56,8 @@ const ClientsList = () => {
       { id: 11, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
   ];
 
-  const handleView = (row) => {    
-    alert("View action clicked for row:" + row.id);
+  const handleView = (row) => {
+    navigate('view', { state: { row } });
   } 
 
   const handleEdit = (row) => {
@@ -70,27 +71,24 @@ const ClientsList = () => {
   }
 
   return (
-    <div>
-        <div className='flex items-center justify-between p-2 px-1'>
-          <h1 className='text-2xl font-medium flex ml leading-normal text-slate-700 gap-3'>
-            <PiUsersFourDuotone className='h-8 w-8'/> Clients
-          </h1>
-          
-        </div>
-            <DataTable 
-              rows={rows} 
-              columns={columns}
-              loading={false} // Set to true when fetching data
-              checkboxSelection={false}
-              onView={handleView}
-              onEdit={handleEdit}
-              onDelete={handleDelete}
-              create={true}
-              height={560} 
+    <>
+      <div>
+          <DataTable 
+            rows={rows} 
+            columns={columns}
+            loading={false} // Set to true when fetching data
+            checkboxSelection={false}
+            onView={handleView}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            create={true}
+            height={560}
+            gridTitle="Clients List"
+            gridIcon={<PiUsersFourDuotone className='h-8 w-8' />} 
           />
-  
-    </div>
-
+      </div>
+      <Outlet />  
+    </>
   )
 }
 

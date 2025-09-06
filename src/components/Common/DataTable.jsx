@@ -5,6 +5,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from 'react-router-dom';
+import { IoAdd } from "react-icons/io5";
 
 const renderActionsCell = (params, onView, onEdit, onDelete) => {
    return (
@@ -46,7 +47,9 @@ const DataTable = ({
     onEdit,
     onDelete,
     height = 400,
-    create = true
+    create = true,
+    gridTitle = "Data Table",
+    gridIcon = <Icon>table_chart</Icon>
 }) => {
     const navigate = useNavigate();
 
@@ -67,14 +70,21 @@ const DataTable = ({
     }
 
   return (
-    <Box sx={{height, width:"100%"}} className="mt-2">
-        <div className='flex items-center justify-end p-2 px-1'>
-            { create && <button className='bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition'
-            onClick={addRecord}
-            >
-                    Add New
-                  </button>
-                  }
+    <Box sx={{height, width:"100%"}}>
+        <div className='flex items-center justify-between px-1 p-3'>
+            <h1 className='flex items-center text-2xl font-medium ml leading-normal text-slate-700 gap-3'>
+                {gridIcon} {gridTitle}
+            </h1>
+            { create && 
+                // <div className='flex gap-'>
+                    <button 
+                        className='cursor-pointer bg-blue-600 hover:bg-blue-700 text-white p-2 rounded flex items-center justify-center'
+                        onClick={addRecord} >
+                        <IoAdd />
+
+                    </button>
+                // </div>
+            }
         </div>
         
         <DataGrid
@@ -121,7 +131,7 @@ const DataTable = ({
             disableRowSelectionOnClick
             disableColumnMenu={true}
             disableColumnResize={true}
-    />
+        />
     </Box>
   )
 }
