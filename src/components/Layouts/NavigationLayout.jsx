@@ -10,7 +10,7 @@ const NavigationLayout = (props) => {
       <SideBar />
       <div className="flex-1 flex flex-col">
         < TopBar />
-        <main className="p-6">
+        <main className="p-3">
          { props.children }
         </main>
       </div>
